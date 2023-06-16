@@ -10,7 +10,7 @@ contract HelperConfig is Script {
     }
     NetworkConfig public activeNetworkConfig;
     uint8 public constant DECIMALS = 8;
-    int256 public constant INITIALANSWER = 2000e8;
+    int256 public constant INITIAL_ANSWER = 2000e8;
 
     constructor() {
         if (block.chainid == 11155111) {
@@ -54,7 +54,7 @@ contract HelperConfig is Script {
         vm.startBroadcast();
         MockV3Aggregator mockV3Aggregator = new MockV3Aggregator(
             DECIMALS,
-            INITIALANSWER
+            INITIAL_ANSWER
         );
 
         vm.stopBroadcast();
