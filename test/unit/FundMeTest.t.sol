@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 import "forge-std/Test.sol";
-import "../src/FundMe.sol";
-import "../script/DeployFundMe.s.sol";
+import "../../src/FundMe.sol";
+import "../../script/DeployFundMe.s.sol";
 import "forge-std/StdCheats.sol";
 
 contract FundMeTest is StdCheats, Test {
     FundMe fundMe;
+    HelperConfig public helperConfig;
     uint256 constant AMOUNT = 0.1 ether;
     uint256 constant INITIAL_BALANCE = 10 ether;
     address immutable i_user = makeAddr("user");
@@ -16,7 +17,7 @@ contract FundMeTest is StdCheats, Test {
 
     function setUp() external {
         DeployFundMe deployFundMe = new DeployFundMe();
-        fundMe = deployFundMe.run();
+        (fundMe, helperConfig) = deployFundMe.run();
         vm.deal(i_user, INITIAL_BALANCE); // supply eth for test
     }
 
